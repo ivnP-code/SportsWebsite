@@ -26,14 +26,16 @@ interface Product {
     specs: string;
 }
 
-export function EquipmentProducts() {
 
+
+export function AllProducts() {
     const { addToCart } = useCart();
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/products?gender=equipment")
+        fetch("http://localhost:5000/api/products")
+
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
@@ -44,16 +46,20 @@ export function EquipmentProducts() {
                 setLoading(false);
             });
     }, []);
-
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
     const [priceRange, setPriceRange] = useState<number[]>([0, 10000]);
     const [sortBy, setSortBy] = useState("popular");
 
-    const categories = ["Обладнання для сили", "Кардіо", "Аксесуари", "Відновлення"];
+    const categories = ["Взуття", "Одяг", "Аксесуари", "Обладнання для сили", "Кардіо", "Відновлення"];
+    const subcategories = [];
 
     const filteredProducts = products
         .filter((product) => {
             if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
+                return false;
+            }
+            if (selectedSubcategories.length > 0 && !selectedSubcategories.includes(product.subcategory)) {
                 return false;
             }
             if (product.price < priceRange[0] || product.price > priceRange[1]) {
@@ -85,15 +91,15 @@ export function EquipmentProducts() {
     return (
         <div className="min-h-screen py-16 px-6">
             <div className="container mx-auto mb-12">
-                <div className="bg-gradient-to-br from-blue-900/50 to-black rounded-[3rem] p-12 md:p-16 relative overflow-hidden border border-white/10">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.15),transparent_50%)]" />
+                <div className="bg-gradient-to-br from-purple-900/50 via-black to-blue-900/50 rounded-[3rem] p-12 md:p-16 relative overflow-hidden border border-white/10">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.2),transparent_50%)]" />
                     <div className="relative z-10">
                         <Badge className="mb-4 bg-white/20 backdrop-blur-md border border-white/30 text-white">
-                            Професійне Обладнання
+                            Вся Колекція
                         </Badge>
-                        <h1 className="text-5xl md:text-7xl mb-4 text-white">Спортивне Обладнання</h1>
+                        <h1 className="text-5xl md:text-7xl text-white mb-4">Всі Товари</h1>
                         <p className="text-xl text-slate-300 max-w-2xl">
-                            Високоякісне спорядження для досягнення максимальних результатів у тренуваннях
+                            Повна колекція преміального спортивного спорядження для чоловіків, жінок та професійних атлетів
                         </p>
                     </div>
                 </div>
@@ -116,13 +122,17 @@ export function EquipmentProducts() {
                                                 onCheckedChange={() => toggleCategory(category)}
                                                 className="border-white/30"
                                             />
-                                            <label htmlFor={category} className="flex-1 cursor-pointer text-white text-sm">
+                                            <label
+                                                htmlFor={category}
+                                                className="flex-1 cursor-pointer text-white"
+                                            >
                                                 {category}
                                             </label>
                                         </div>
                                     ))}
                                 </div>
                             </div>
+
 
                             <div className="mb-8">
                                 <h4 className="mb-4 text-slate-300">Ціна</h4>
@@ -144,7 +154,10 @@ export function EquipmentProducts() {
                             <Button
                                 variant="outline"
                                 className="w-full bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white/20 rounded-full"
-                                onClick={() => { setSelectedCategories([]); setPriceRange([0, 10000]); }}
+                                onClick={() => {
+                                    setSelectedCategories([]);
+                                    setPriceRange([0, 10000]);
+                                }}
                             >
                                 Скинути фільтри
                             </Button>
@@ -172,6 +185,7 @@ export function EquipmentProducts() {
                                                 Оберіть параметри для пошуку
                                             </SheetDescription>
                                         </SheetHeader>
+
                                         <div className="mt-8">
                                             <div className="mb-8">
                                                 <h4 className="mb-4 text-slate-300">Категорії</h4>
@@ -184,13 +198,18 @@ export function EquipmentProducts() {
                                                                 onCheckedChange={() => toggleCategory(category)}
                                                                 className="border-white/30"
                                                             />
-                                                            <label htmlFor={`mobile-${category}`} className="flex-1 cursor-pointer text-white text-sm">
+                                                            <label
+                                                                htmlFor={`mobile-${category}`}
+                                                                className="flex-1 cursor-pointer text-white"
+                                                            >
                                                                 {category}
                                                             </label>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
+
+                                           
                                             <div className="mb-8">
                                                 <h4 className="mb-4 text-slate-300">Ціна</h4>
                                                 <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
@@ -207,10 +226,15 @@ export function EquipmentProducts() {
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <Button
                                                 variant="outline"
                                                 className="w-full bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white/20 rounded-full"
-                                                onClick={() => { setSelectedCategories([]); setPriceRange([0, 10000]); }}
+                                                onClick={() => {
+                                                    setSelectedCategories([]);
+                                                    setSelectedSubcategories([]);
+                                                    setPriceRange([0, 10000]);
+                                                }}
                                             >
                                                 Скинути фільтри
                                             </Button>
@@ -231,86 +255,113 @@ export function EquipmentProducts() {
                             </div>
                         </div>
 
-                        {loading && (
-                            <div className="text-center py-20 text-slate-300">Завантаження...</div>
-                        )}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            {filteredProducts.map((product) => (
+                                <div
+                                    key={product.id}
+                                    className="group bg-white/5 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                                >
+                                    <div className="relative aspect-square overflow-hidden bg-slate-800">
+                                        <ImageWithFallback
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        />
 
-                        {!loading && (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                                {filteredProducts.map((product) => (
-                                    <div
-                                        key={product.id}
-                                        className="group bg-white/5 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
-                                    >
-                                        <div className="relative aspect-square overflow-hidden bg-slate-800">
-                                            <ImageWithFallback
-                                                src={product.image}
-                                                alt={product.name}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                            />
-                                            <div className="absolute top-4 left-4 flex flex-col gap-2">
-                                                {product.isNew && (
-                                                    <Badge className="bg-white/90 backdrop-blur-md text-black border-0">
-                                                        Новинка
-                                                    </Badge>
-                                                )}
-                                                {product.discount && (
-                                                    <Badge className="bg-red-500/90 backdrop-blur-md text-white border-0">
-                                                        -{product.discount}%
-                                                    </Badge>
-                                                )}
-                                            </div>
-                                         
+                                        <div className="absolute top-4 left-4 flex flex-col gap-2">
+                                            {product.isNew && (
+                                                <Badge className="bg-white/90 backdrop-blur-md text-black border-0">
+                                                    Новинка
+                                                </Badge>
+                                            )}
+                                            {product.discount && (
+                                                <Badge className="bg-red-500/90 backdrop-blur-md text-white border-0">
+                                                    -{product.discount}%
+                                                </Badge>
+                                            )}
                                         </div>
 
-                                        <div className="p-6">
-                                            <Badge className="mb-3 bg-white/10 backdrop-blur-md border-white/20 text-white text-xs">
+                                    </div>
+
+                                    <div className="p-6">
+                                        <div className="flex gap-2 mb-3">
+                                            <Badge className="bg-white/10 backdrop-blur-md border-white/20 text-white text-xs">
                                                 {product.category}
                                             </Badge>
-                                            <h3 className="text-xl mb-2 text-white">{product.name}</h3>
-
-                                            <div className="flex items-center gap-2 mb-3">
-                                                <div className="flex items-center text-yellow-400">
-                                                    {"★".repeat(Math.floor(product.rating))}
-                                                    {"☆".repeat(5 - Math.floor(product.rating))}
-                                                </div>
-                                                <span className="text-sm text-slate-400">{product.rating}</span>
-                                            </div>
-
-                                            <div className="flex items-baseline gap-3 mb-4">
-                                                <span className="text-2xl text-white">{product.price} ₴</span>
-                                                {product.originalPrice && (
-                                                    <span className="text-slate-500 line-through">
-                                                        {product.originalPrice} ₴
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <Button
-                                                className="cursor-pointer w-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 text-white rounded-full group/btn"
-                                                onClick={() => addToCart({
-                                                    id: product.id,
-                                                    name: product.name,
-                                                    price: product.price,
-                                                    image: product.image,
-                                                })}
-                                            >
-                                                <ShoppingCart className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
-                                                Додати в кошик
-                                            </Button>
+                                            <Badge className="bg-white/10 backdrop-blur-md border-white/20 text-white text-xs">
+                                                {product.subcategory}
+                                            </Badge>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                                        <h3 className="text-xl mb-2 text-white">{product.name}</h3>
 
-                        {!loading && filteredProducts.length === 0 && (
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <div className="flex items-center text-yellow-400">
+                                                {"★".repeat(Math.floor(product.rating))}
+                                                {"☆".repeat(5 - Math.floor(product.rating))}
+                                            </div>
+                                            <span className="text-sm text-slate-400">{product.rating}</span>
+                                        </div>
+
+                                        <div className="flex items-baseline gap-3 mb-4">
+                                            <span className="text-2xl text-white">{product.price} ₴</span>
+                                            {product.originalPrice && (
+                                                <span className="text-slate-500 line-through">
+                                                    {product.originalPrice} ₴
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {product.sizes?.slice(0, 5).map((size) => (
+                                                <span
+                                                    key={size}
+                                                    className="px-3 py-1 text-sm text-white bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+                                                >
+                                                    {size}
+                                                </span>
+                                            ))}
+                                            {product.specs?.slice(0, 3).map((spec, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="px-3 py-1 text-sm text-white bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+                                                >
+                                                    {spec}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <Button
+                                            className="cursor-pointer w-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 text-white rounded-full group/btn"
+                                            onClick={() => addToCart({
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price,
+                                                image: product.image,
+                                            })}
+                                        >
+                                            <ShoppingCart className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                                            Додати в кошик
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {filteredProducts.length === 0 && (
                             <div className="text-center py-20">
                                 <div className="bg-white/5 backdrop-blur-md rounded-3xl p-12 border border-white/10">
-                                    <p className="text-2xl text-slate-300 mb-4">Товарів не знайдено</p>
-                                    <p className="text-slate-400 mb-6">Спробуйте змінити фільтри пошуку</p>
+                                    <p className="text-2xl text-slate-300 mb-4">
+                                        Товарів не знайдено
+                                    </p>
+                                    <p className="text-slate-400 mb-6">
+                                        Спробуйте змінити фільтри пошуку
+                                    </p>
                                     <Button
                                         className="bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 text-white rounded-full"
-                                        onClick={() => { setSelectedCategories([]); setPriceRange([0, 10000]); }}
+                                        onClick={() => {
+                                            setSelectedCategories([]);
+                                            setPriceRange([0, 10000]);
+                                        }}
                                     >
                                         Скинути всі фільтри
                                     </Button>

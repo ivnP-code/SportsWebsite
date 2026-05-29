@@ -1,10 +1,10 @@
+import * as React from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Button } from "./ui/button";
 
 export function Categories() {
   return (
     <section className="py-20 relative">
-      {/* Curved top edge */}
       <div className="absolute top-0 left-0 right-0 h-20 bg-background" 
            style={{clipPath: 'ellipse(100% 100% at 50% 0%)'}} />
       
@@ -18,7 +18,6 @@ export function Categories() {
           </p>
         </div>
         
-        {/* Categories section removed */}
       </div>
     </section>
   );

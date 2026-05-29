@@ -2,6 +2,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Target, Award, Globe, Heart, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
+import * as React from "react";
 
 const values = [
   {
@@ -38,8 +39,8 @@ const stats = [
 export function About() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 px-6 overflow-hidden">
+
+          <section className="relative py-20 md:py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-black to-blue-900/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.2),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.15),transparent_50%)]" />
@@ -60,7 +61,6 @@ export function About() {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-16 px-6 bg-gradient-to-b from-black to-slate-950">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -81,7 +81,6 @@ export function About() {
         </div>
       </section>
 
-      {/* Mission Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -96,7 +95,7 @@ export function About() {
                 APEX SPORT народився з простої ідеї: спортивне обладнання має бути не лише функціональним, а й витонченим. Ми віримо, що кожен атлет заслуговує на інструменти, які відображають їхню відданість та пристрасть.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
-                Наша місія — створювати продукти преміальної якості, які допомагають спортсменам розкрити свій повний потенціал, поєднуючи передові технології з неперевершеним дизайном.
+                Наша місія - створювати продукти преміальної якості, які допомагають спортсменам розкрити свій повний потенціал, поєднуючи передові технології з неперевершеним дизайном.
               </p>
               <div className="flex flex-wrap gap-3 pt-4">
                 <Badge className="bg-purple-500/20 backdrop-blur-md border-purple-500/30 text-purple-300 text-base px-4 py-2">
@@ -127,7 +126,6 @@ export function About() {
         </div>
       </section>
 
-      {/* Values Section */}
       <section className="py-20 px-6 bg-gradient-to-b from-slate-950 to-black">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -166,7 +164,6 @@ export function About() {
         </div>
       </section>
 
-      {/* Sustainability Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -225,7 +222,6 @@ export function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="bg-gradient-to-r from-purple-900/50 via-blue-900/50 to-pink-900/50 rounded-[3rem] p-12 md:p-20 relative overflow-hidden border border-white/10">

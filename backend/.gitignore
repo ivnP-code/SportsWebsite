@@ -1,0 +1,66 @@
+# Apex Sport Backend
+
+## Project Structure
+
+```
+backend/
+├── ApexSportApi.csproj     # Project file with dependencies
+├── Program.cs              # ASP.NET Core setup & seed data
+├── appsettings.json        # Configuration (DB connection string)
+├── Models/
+│   └── Product.cs          # Product model
+├── Data/
+│   └── AppDbContext.cs     # Entity Framework DbContext
+├── Controllers/
+│   └── ProductsController.cs # API endpoints
+└── apex_sport.db           # SQLite database (auto-created)
+```
+
+## Quick Start
+
+1. Navigate to backend:
+   ```bash
+   cd backend
+   ```
+
+2. Restore dependencies:
+   ```bash
+   dotnet restore
+   ```
+
+3. Run the server:
+   ```bash
+   dotnet run
+   ```
+
+Server runs on: `http://localhost:5000`
+
+## API Endpoints
+
+### Get All Products
+```
+GET /api/products
+```
+
+### Get Product by ID
+```
+GET /api/products/1
+```
+
+### Get Products by Category
+```
+GET /api/products/category/Взуття
+```
+
+## Database
+
+- **Type:** SQLite
+- **File:** `apex_sport.db` (created automatically)
+- **Initial Data:** Seeded automatically on first run with sample products
+
+## Technologies
+
+- .NET 8.0
+- ASP.NET Core
+- Entity Framework Core
+- SQLite

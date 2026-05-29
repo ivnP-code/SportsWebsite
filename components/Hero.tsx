@@ -1,10 +1,11 @@
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import * as React from "react";
+import { Link } from "react-router-dom";
 
 export function Hero() {
   return (
     <section className="relative h-[85vh] overflow-hidden">
-      {/* Background with elegant overlay */}
       <div className="absolute inset-0">
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=2000&q=80"
@@ -14,7 +15,6 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/40" />
       </div>
       
-      {/* Curved bottom edge */}
       <div className="absolute bottom-0 left-0 right-0 h-20 bg-background" 
            style={{clipPath: 'ellipse(100% 100% at 50% 100%)'}} />
       
@@ -29,12 +29,11 @@ export function Hero() {
               Преміальне спортивне спорядження для чемпіонів. Де продуктивність зустрічається з розкішшю в кожній деталі.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-              <Button size="lg" className="bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30 hover:text-white font-bold text-lg px-10 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                Переглянути колекцію
-              </Button>
-              <Button size="lg" className="bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30 hover:text-white font-bold text-lg px-10 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                Дивитись лукбук
-              </Button>
+                          <Link to="/products">
+                              <Button size="lg" className="bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30 hover:text-white font-bold text-lg px-10 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                                  Переглянути всі товари
+                              </Button>
+                          </Link>
             </div>
           </div>
         </div>

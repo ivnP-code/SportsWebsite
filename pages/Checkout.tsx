@@ -35,12 +35,17 @@ export function Checkout() {
         totalPrice: subtotal
     } = useCart();
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [deliveryMethod, setDeliveryMethod] = useState("nova-post");
     const [paymentMethod, setPaymentMethod] = useState("card");
     const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
     const deliveryPrice = deliveryMethod === "courier" ? 150 : 80;
     const total = subtotal + deliveryPrice;
     const isCartEmpty = cartItems.length === 0;
+    const isFormEmpty = !firstName.trim() || !lastName.trim() || !email.trim() || !phone.trim();
 
     const handleConfirmOrder = () => {
         setIsOrderConfirmed(true);
@@ -75,10 +80,30 @@ export function Checkout() {
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <Input placeholder="Ім'я" className="bg-white/10 text-white" />
-                                <Input placeholder="Прізвище" className="bg-white/10 text-white" />
-                                <Input placeholder="Email" className="bg-white/10 text-white" />
-                                <Input placeholder="Телефон" className="bg-white/10 text-white" />
+                                <Input 
+                                    placeholder="Ім'я" 
+                                    className="bg-white/10 text-white"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                                <Input 
+                                    placeholder="Прізвище" 
+                                    className="bg-white/10 text-white"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                                <Input 
+                                    placeholder="Email" 
+                                    className="bg-white/10 text-white"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <Input 
+                                    placeholder="Телефон" 
+                                    className="bg-white/10 text-white"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                />
                             </div>
                         </div>
 
@@ -189,7 +214,7 @@ export function Checkout() {
                         <Button
                             className="w-full mt-6 disabled:cursor-not-allowed"
                             onClick={handleConfirmOrder}
-                            disabled={isCartEmpty} 
+                            disabled={isCartEmpty || isFormEmpty} 
                         >
                             Підтвердити
                             <ArrowRight />

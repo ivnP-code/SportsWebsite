@@ -1,11 +1,19 @@
+# Sports Shopping Website
 
-  # Sports Shopping Website
+This is a code bundle for the "Sports Shopping Website" (Apex Sport).
 
-  This is a code bundle for Sports Shopping Website. The original project is available at https://www.figma.com/design/kefnm1mJRMnBJI5XNvuIw3/Sports-Shopping-Website.
+## Running the project
 
-  ## Running the code
+Install frontend dependencies:
+cd frontend && npm install
 
-  Run `npm i` to install the dependencies.
+Start the backend:
+cd backend
+dotnet run
 
-  Run `npm run dev` to start the development server.
+Start the frontend development server:
+cd frontend 
+npm run dev
+
+The backend provides the data required for proper website initialization.
   

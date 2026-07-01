@@ -41,6 +41,8 @@ using (var scope = app.Services.CreateScope())
 app.UseRouting();
 app.UseCors("AllowReact");
 app.MapControllers();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "80";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.Run();
 

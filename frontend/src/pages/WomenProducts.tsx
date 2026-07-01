@@ -32,7 +32,7 @@ export function WomenProducts() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    fetch("http://localhost:5000/api/products?gender=women")
+        fetch(`${import.meta.env.VITE_API_URL}/api/products?gender=women`)
 
             .then((res) => res.json())
             .then((data) => {

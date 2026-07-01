@@ -36,7 +36,7 @@ export function MenProducts() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-            fetch("http://localhost:5000/api/products?gender=men")
+        fetch(`${import.meta.env.VITE_API_URL}/api/products?gender=men`)
 
             .then((res) => res.json())
             .then((data) => {

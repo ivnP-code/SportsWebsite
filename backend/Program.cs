@@ -13,8 +13,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
                 "http://localhost:3000",
                 "http://localhost:5173",
-                "https://apex-sport-ntxwsoun9-ivn-dep.vercel.app"
-
+                "https://apex-sport-alpha.vercel.app"
             )
             .AllowAnyMethod()
             .AllowAnyHeader();

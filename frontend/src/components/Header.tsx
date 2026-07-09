@@ -80,7 +80,7 @@ export function Header() {
                 </div>
             </div>
 
-            {/* Мобільне меню */}
+         
             {isMenuOpen && (
                 <div className="md:hidden border-t border-border/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                     <div className="container mx-auto px-6 py-4 flex flex-col space-y-2">

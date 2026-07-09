@@ -20,7 +20,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// SQLite Database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString)

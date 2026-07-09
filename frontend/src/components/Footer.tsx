@@ -1,17 +1,18 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-
+import * as React from "react";
+ 
 export function Footer() {
   return (
     <footer className="relative bg-gradient-to-br from-slate-900 to-black text-white overflow-hidden">
-      {/* Curved top edge */}
+     
       <div className="absolute top-0 left-0 right-0 h-20 bg-background" 
            style={{clipPath: 'ellipse(100% 100% at 50% 0%)'}} />
       
       <div className="container mx-auto px-6 py-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          {/* Brand */}
+      
           <div className="lg:col-span-1">
             <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10">
               <div className="flex items-center space-x-3 mb-6">
@@ -40,7 +41,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Support */}
+    
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10">
             <h4 className="mb-6 font-black text-lg">Підтримка</h4>
             <ul className="space-y-3 text-slate-400">
@@ -52,7 +53,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10">
             <h4 className="mb-6 font-black text-lg">Будьте в курсі</h4>
             <p className="text-slate-300 mb-6 font-bold leading-relaxed">

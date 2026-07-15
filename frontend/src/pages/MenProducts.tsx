@@ -164,7 +164,12 @@ export function MenProducts() {
           </aside>
 
                   <div className="flex-1">
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                      {loading && (
+                            <div className="text-center py-20 text-slate-300">Завантаження...</div>
+                        )}
+
+                        {!loading && (
+                      <><div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
               <p className="text-slate-300">
                 Знайдено <span className="text-white">{filteredProducts.length}</span> товарів
               </p>
@@ -357,7 +362,8 @@ export function MenProducts() {
                   </Button>
                 </div>
               </div>
-            )}
+            )}</>
+                        )}
           </div>
         </div>
       </div>
